@@ -63,23 +63,23 @@ const Header = () => {
                 alt=" "
               ></img>
             </div>
-            <div className="navigation">
-              <ul className="menu d-flex align-items-center gap-5">
-                {nav_link.map((item, index) => (
-                  <li className="nav__item" key={index}>
-                    <NavLink
-                      to={item.path}
-                      className={(navCLass) =>
-                        navCLass.isActive ? "active__link" : ""
-                      }
-                    >
-                      {" "}
-                      {item.display}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* <div className="navigation"> */}
+            <ul className="menu d-flex align-items-center gap-5">
+              {nav_link.map((item, index) => (
+                <li className="nav__item" key={index}>
+                  <NavLink
+                    to={item.path}
+                    className={(navCLass) =>
+                      navCLass.isActive ? "active__link" : ""
+                    }
+                  >
+                    {" "}
+                    {item.display}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+            {/* </div> */}
             <div className="nav__right d-flex align-items-center gap-4 ">
               <div></div>
               {currentUser ? (
