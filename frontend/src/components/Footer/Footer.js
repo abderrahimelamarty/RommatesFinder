@@ -26,7 +26,7 @@ function Footer() {
               <div className="logo">
                 <img
                   src="
-                  https://raw.githubusercontent.com/codingwithmuhib/MernStack-Tour-Management/main/tour-management/frontend/src/assets/images/logo.png"
+                  https://cdn.logo.com/hotlink-ok/logo-social.png"
                   alt=""
                 />
                 <p>

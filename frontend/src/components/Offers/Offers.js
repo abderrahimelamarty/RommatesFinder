@@ -159,7 +159,7 @@ function Offers() {
   return (
     <>
       {data.map((offer) => (
-        <Col lg="3" className="mb-4" key={offer.id}>
+        <Col lg="4" className="mb-4 " key={offer.id}>
           <Offer offer={offer} />
         </Col>
       ))}

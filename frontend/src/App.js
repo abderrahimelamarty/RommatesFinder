@@ -22,6 +22,8 @@ import Offers from "./components/Offers/Offers";
 import OfferDetails from "./components/Offers/OfferDetails";
 import Thankyou from "./components/Offers/Thankyou";
 import Footer from "./components/Footer/Footer";
+import About from "./common/About";
+import SearchResult from "./components/Search/SearchResult";
 
 const App = () => {
   const navigate = useNavigate();
@@ -62,6 +64,8 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/OfferDetails/:id" element={<OfferDetails />} />
           <Route path="/thank-you" element={<Thankyou />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/searchResult" element={<SearchResult />} />
         </Routes>
         <Footer />
       </div>

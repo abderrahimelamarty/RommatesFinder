@@ -4,6 +4,7 @@ import { Col, Container, Row } from "reactstrap";
 import UserService from "../services/user.service";
 import Offers from "./Offers/Offers";
 import "./Home.css";
+import Ville from "./Ville/Ville";
 const Home = () => {
   const [content, setContent] = useState("");
 
@@ -68,6 +69,14 @@ const Home = () => {
           </Col>
         </Row>
       </Container>
+      <br></br>
+      <h2
+        className="featured__tour-title"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        Proposed Cities For you
+      </h2>
+      <Ville />
       <Row className="mx-5">
         <Col lg="12" className="mb-5">
           <h2
