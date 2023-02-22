@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(229, 231, 235);
 }
 
 .listWrapper {
@@ -13,7 +16,7 @@
 
 .listSearch {
   flex: 1;
-  background-color: #b1dee6;
+  border: 1px solid rgb(229, 231, 235);
   padding: 10px;
   border-radius: 10px;
   position: sticky;
@@ -34,18 +37,21 @@
   margin-bottom: 10px;
 }
 
-.lsItem > label {
-  font-size: 12px;
+.lsItem label {
+  font-size: 16px;
 }
 
 .lsItem > input {
-  height: 30px;
-  border: none;
-  padding: 5px;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid rgb(229, 231, 235);
 }
 .lsItem > span {
   height: 30px;
   padding: 5px;
+
   background-color: white;
   display: flex;
   align-items: center;
@@ -68,6 +74,9 @@
   width: 50px;
 }
 
+.lsOptionText {
+  font-size: 1rem;
+}
 .listSearch > button {
   padding: 10px;
   background-color: #0071c2;

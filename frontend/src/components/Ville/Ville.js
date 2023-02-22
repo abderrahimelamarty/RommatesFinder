@@ -9,7 +9,7 @@ function Ville() {
           <Link to="/searchResult">
             {" "}
             <img
-              src="https://cf.bstatic.com/xdata/images/city/max500/957801.webp?k=a969e39bcd40cdcc21786ba92826063e3cb09bf307bcfeac2aa392b838e9b7a5&o="
+              src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/a5/5a/02/chouara-tannery.jpg?w=1200&h=-1&s=1"
               alt=""
               className="featuredImg"
             />

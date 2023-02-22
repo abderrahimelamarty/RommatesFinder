@@ -56,7 +56,7 @@ const Profile = () => {
         </div>
       )}
       <div className="row">
-        <div className="col-md-3 border-right">
+        <div className="col-md-5 border-right">
           <div className="d-flex flex-column align-items-center text-center p-3 py-5">
             <img
               className="rounded-circle mt-5"

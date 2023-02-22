@@ -7,14 +7,16 @@ function SearchItem() {
       {" "}
       <div className="searchItem">
         <img
-          src="https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1"
+          src="https://s7d2.scene7.com/is/image/ritzcarlton/pnrqz-king-50661983?$XlargeViewport100pct$"
           alt=""
           className="siImg"
         />
         <div className="siDesc">
           <h1 className="siTitle">Tower Street Apartments</h1>
           <span className="siDistance">500m from center</span>
-          <span className="siTaxiOp">Free airport taxi</span>
+          <span className="siTaxiOp rating d-flex align-items-center gap-1">
+            <i class="ri-wifi-line"></i>wiffi speed 5G
+          </span>
           <span className="siSubtitle">
             Studio Apartment with Air conditioning
           </span>
@@ -29,7 +31,10 @@ function SearchItem() {
         <div className="siDetails">
           <div className="siRating">
             <span>Excellent</span>
-            <button>8.9</button>
+            <span className=" rating d-flex align-items-center gap-1">
+              {" "}
+              8.9<i class="ri-star-fill"></i>
+            </span>
           </div>
           <div className="siDetailTexts">
             <span className="siPrice">$112</span>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "reactstrap";
-
+import RoomsService from "../services/rooms-service";
 import UserService from "../services/user.service";
 import Offers from "./Offers/Offers";
 import "./Home.css";
@@ -9,17 +9,12 @@ const Home = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    UserService.getPublicContent().then(
+    RoomsService.getAllRooms().then(
       (response) => {
-        setContent(response.data);
+        console.log(response.data);
       },
       (error) => {
-        const _content =
-          (error.response && error.response.data) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
+        console.log(error);
       }
     );
   }, []);
@@ -76,8 +71,10 @@ const Home = () => {
       >
         Proposed Cities For you
       </h2>
+      <br></br>
       <Ville />
-      <Row className="mx-5">
+      <br></br>
+      <Row>
         <Col lg="12" className="mb-5">
           <h2
             className="featured__tour-title"
