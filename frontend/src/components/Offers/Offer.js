@@ -6,6 +6,7 @@ import "./Offer.css";
 function Offer({ offer }) {
   const navigate = useNavigate();
   const book = (e, id) => {
+    console.log(id);
     e.preventDefault();
     navigate(`/OfferDetails/${id}`);
   };
@@ -13,7 +14,7 @@ function Offer({ offer }) {
     <div className="tour__card">
       <Card>
         <div className="tour__img">
-          <img src={offer.images[0]} alt="" />
+          <img src={offer.images} alt="" />
         </div>
         <CardBody>
           <div className="card__top d-flex align-items-center justify-content-between">
@@ -32,8 +33,9 @@ function Offer({ offer }) {
               <i class="ri-user-add-fill"></i>2People
             </span>
           </div>
+
           <div className="card__bottom d-flex align-items-center justify-content-between mt-3">
-            <h6> $92/month</h6>
+            <h6> ${offer.prix}/month</h6>
 
             <button className="btn booking__btn ">
               <a onClick={(e, id) => book(e, offer.id)}>More Details</a>

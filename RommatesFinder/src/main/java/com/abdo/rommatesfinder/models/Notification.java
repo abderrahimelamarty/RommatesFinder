@@ -6,18 +6,17 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
+import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
-public class Room {
+public class Notification {
     @Id
     String id;
-    String Ville;
-    String images;
-    String adresse;
-    Boolean rented;
-    List<User> rommates;
-    int Prix;
+    User sender;
+    User receiver;
+    String msg;
+    private LocalDateTime timestamp;
+    private boolean read;
 }

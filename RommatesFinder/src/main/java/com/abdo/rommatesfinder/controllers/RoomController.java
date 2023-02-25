@@ -1,5 +1,6 @@
 package com.abdo.rommatesfinder.controllers;
 
+import com.abdo.rommatesfinder.models.Notification;
 import com.abdo.rommatesfinder.models.RentRequest;
 import com.abdo.rommatesfinder.models.Room;
 import com.abdo.rommatesfinder.models.User;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/rooms")
 public class RoomController {
@@ -32,7 +33,7 @@ public class RoomController {
         List<Room> rooms=  roomService.getRooms();
         return new ResponseEntity<List<Room>>(rooms, HttpStatus.OK);
     }
-    @GetMapping("/Room/{id}")
+    @GetMapping("/Rooms/{id}")
     public ResponseEntity<Room>  getRoom(@PathVariable("id") String id){
         Room room=  roomService.getRoom(id).get();
         return new ResponseEntity<Room>(room, HttpStatus.OK);
@@ -56,6 +57,10 @@ public class RoomController {
     public ResponseEntity<RentRequest>  bookRoom(@RequestBody RentRequest rentRequest){
 
         return new ResponseEntity<RentRequest>(rentRequestService.sendRentRequest(rentRequest.getRequest(), rentRequest.getFromUser(), rentRequest.getToUser()), HttpStatus.OK);
+    }
+    @PostMapping("/{id}/accept")
+    public ResponseEntity<Notification> acceptFriendRequest(@PathVariable("id") String rentRequestId) {
+        return  new ResponseEntity<Notification>(rentRequestService.acceptRentRequest(rentRequestId),HttpStatus.OK);
     }
 
 }

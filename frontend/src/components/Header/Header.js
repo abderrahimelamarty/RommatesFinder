@@ -85,12 +85,12 @@ const Header = () => {
               {currentUser ? (
                 <div className="nav__btns d-flex align-items-center gap-4">
                   <Button className="btn primary__btn">
-                    <span> add room</span> <i class="ri-add-line"></i>
-                    <i class="ri-home-4-line"></i>
+                    <Link to="/addOffer">addPost</Link>
                   </Button>
                   <Button className="btn primary__btn">
                     <Link to="/Profile">{currentUser.username}</Link>
                   </Button>
+
                   <Button className="btn primary__btn" onClick={logout}>
                     <a href="/home">
                       <i class="ri-logout-circle-r-line"> </i>

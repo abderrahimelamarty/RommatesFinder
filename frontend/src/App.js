@@ -24,6 +24,8 @@ import Thankyou from "./components/Offers/Thankyou";
 import Footer from "./components/Footer/Footer";
 import About from "./common/About";
 import SearchResult from "./components/Search/SearchResult";
+import AddOffer from "./components/Offers/AddOffer";
+import AddRoom from "./components/Offers/AddRoom";
 
 const App = () => {
   const navigate = useNavigate();
@@ -66,6 +68,8 @@ const App = () => {
           <Route path="/thank-you" element={<Thankyou />} />
           <Route path="/about" element={<About />} />
           <Route path="/searchResult" element={<SearchResult />} />
+          <Route path="/addOffer" element={<AddOffer />} />
+          <Route path="/addRoom" element={<AddRoom />} />
         </Routes>
         <Footer />
       </div>

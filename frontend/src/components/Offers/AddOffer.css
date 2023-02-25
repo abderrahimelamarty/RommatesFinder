@@ -1,0 +1,8 @@
+.options__item {
+  border-bottom: 1px solid rgb(218, 213, 213);
+  padding: 6px;
+  margin: 5px;
+}
+.options__img {
+  width: 80%;
+}

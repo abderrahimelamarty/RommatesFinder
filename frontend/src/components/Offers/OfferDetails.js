@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AuthService from "../../services/auth.service";
+import RoomsService from "../../services/rooms-service";
 import {
   Col,
   Container,
@@ -14,6 +15,19 @@ import {
 import "./OfferDetails.css";
 function OfferDetails() {
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [offer, setData] = useState([]);
+  const { id } = useParams();
+  useEffect(() => {
+    RoomsService.getRoom(id).then(
+      (response) => {
+        console.log(response.data);
+        setData(response.data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }, []);
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     console.log(user);
@@ -42,160 +56,7 @@ function OfferDetails() {
       navigate("/login");
     }
   };
-  const data = [
-    {
-      id: 1,
-      title: "Westminister Bridge",
-      city: "London",
-      address: "Somewhere in London",
-      distance: 300,
-      price: 99,
-      maxGroupSize: 10,
-      desc: "this is the description",
-      reviews: [],
 
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Bali, Indonesia",
-      city: "Bali",
-      address: "Somewhere in Indonesia",
-      distance: 400,
-      price: 99,
-      maxGroupSize: 8,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Snowy Mountains",
-      city: "Bangkok",
-      address: "Somewhere in Thailand",
-      distance: 500,
-      price: 99,
-      maxGroupSize: 8,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Beautiful Sunrise",
-      city: "Phuket",
-      address: "Somewhere in Thailand",
-      distance: 500,
-      price: 99,
-      maxGroupSize: 8,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: true,
-    },
-    {
-      id: 5,
-      title: "Nusa Pendia Bali",
-      city: "Bali",
-      address: "Somewhere in Indonesia",
-      distance: 500,
-      price: 99,
-      maxGroupSize: 8,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: true,
-    },
-    {
-      id: 6,
-      title: "Cherry Blossoms Spring",
-      city: "Tokyo",
-      address: "Somewhere in Japan",
-      distance: 500,
-      price: 99,
-      maxGroupSize: 8,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: true,
-    },
-    {
-      id: 7,
-      title: "Holmen Lofoten",
-      city: "Paris",
-      address: "Somewhere in France",
-      distance: 500,
-      price: 99,
-      maxGroupSize: 8,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: true,
-    },
-    {
-      id: 8,
-      title: "Snowy Mountains",
-      city: "Bangkok",
-      address: "Somewhere in Thailand",
-      distance: 500,
-      price: 99,
-      maxGroupSize: 8,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: true,
-    },
-    {
-      id: 9,
-      title: "Jaflong,Sylhet",
-      city: "Sylhet",
-      address: "Somewhere in Sylhet",
-      distance: 100,
-      price: 99,
-      maxGroupSize: 5,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: false,
-    },
-    {
-      id: 10,
-      title: "Cox's Bazar Sea Beach",
-      city: "Chittagong",
-      address: "Somewhere in Chittagong",
-      distance: 500,
-      price: 99,
-      maxGroupSize: 8,
-      desc: "this is the description",
-      reviews: [],
-
-      photo:
-        "https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg",
-      featured: false,
-    },
-  ];
-  const { id } = useParams();
-  const offer = data.find((offer) => offer.id == id);
   return (
     <>
       <section>
@@ -208,32 +69,30 @@ function OfferDetails() {
                   alt=""
                 />
                 <div className="tour__info">
-                  <h2>{offer.title}</h2>
+                  <h2>{offer.ville}</h2>
                   <div className="d-flex align-items-center gap-5">
                     <span className="tour__rating d-flex align-items-center gap-1">
-                      <i class="ri-star-fill"></i> {offer.avgRating}{" "}
-                      <span>({offer.reviews.length})</span>
+                      <i class="ri-star-fill"></i> 4<span>3</span>
                     </span>
                     <span>
-                      <i class="ri-map-pin-line"></i> {offer.address}
+                      <i class="ri-map-pin-line"></i> {offer.adresse}
                     </span>
                   </div>
                   <div className="tour__extra-details">
                     <span>
                       {" "}
-                      <i class="ri-map-pin-line"></i> {offer.address}
+                      <i class="ri-map-pin-line"></i> {offer.adresse}
                     </span>
                     <span>
                       <i class="ri-money-dollar-circle-fill"></i>
-                      {offer.price} DH/mounth
+                      {offer.prix} DH
                     </span>
                     <span>
-                      <i class="ri-group-fill"></i>
-                      {offer.maxGroupSize} persons
+                      <i class="ri-group-fill"></i>2 persons
                     </span>
                   </div>
                   <h5> Description</h5>
-                  <p>{offer.desc}</p>
+                  <p>{offer.adresse}</p>
                 </div>
               </div>
             </Col>
@@ -242,12 +101,11 @@ function OfferDetails() {
                 <div className="booking__top d-flex align-items-center justify-content-between ">
                   <h3>
                     {" "}
-                    $ {offer.price}
+                    $ {offer.prix}
                     <span>/ per person</span>
                   </h3>
                   <span className="tour__rating d-flex align-items-center gap-1">
-                    <i class="ri-star-fill"></i> {offer.avgRating}{" "}
-                    <span>({offer.reviews.length})</span>
+                    <i class="ri-star-fill"></i> 4 <span>3</span>
                   </span>
                 </div>
                 <div className="booking__form">
@@ -293,10 +151,10 @@ function OfferDetails() {
                   <ListGroup>
                     <ListGroupItem className="border-0 px-0">
                       <h5 className="d-flex alin-items-center gap-1">
-                        ${offer.price}
+                        ${offer.prix}
                         <i class="ri-close-line"></i>1 person
                       </h5>
-                      <span>{offer.price}</span>
+                      <span>{offer.prix}</span>
                     </ListGroupItem>
                     <ListGroupItem className="border-0 px-0">
                       <h5>Service Charge</h5>

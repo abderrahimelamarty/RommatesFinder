@@ -16,4 +16,5 @@ public class RentRequest {
     String fromUser;
     String toUser;
     String request;
+    boolean accepted;
 }

@@ -66,7 +66,7 @@ public class WebSecurityConfig {
 
                 .authorizeRequests().requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/test/**").permitAll()
-
+                .requestMatchers("/api/v1/rooms/**").permitAll()
                 .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());
