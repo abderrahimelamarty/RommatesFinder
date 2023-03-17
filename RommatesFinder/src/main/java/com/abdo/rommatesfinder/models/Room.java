@@ -18,6 +18,7 @@ public class Room {
     String images;
     String adresse;
     Boolean rented;
-    List<User> rommates;
+    String userId;
+    String Username;
     int Prix;
 }

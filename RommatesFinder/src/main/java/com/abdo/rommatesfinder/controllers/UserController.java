@@ -8,15 +8,13 @@ import com.abdo.rommatesfinder.repositories.UserRepository;
 import com.abdo.rommatesfinder.services.RentRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user")
+@CrossOrigin("http://localhost:3000")
 public class UserController {
     @Autowired
     UserRepository userRepository;
@@ -30,9 +28,10 @@ public class UserController {
         List<RentRequest> rentRequests = rentRequestRepository.findByToUser(userId);
         return ResponseEntity.ok(rentRequests);
     }
-    @GetMapping("/Notification/{userId}")
-    public List<Notification> getNotificationsForUser(@PathVariable String userId) {
-        User user =userRepository.findById(userId).get() ;
-        return rentRequestService.getNotificationsForUser(user);
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUser(@PathVariable("id") String userId) {
+        User user = userRepository.findById(userId).get();
+        return ResponseEntity.ok(user);
     }
+
 }

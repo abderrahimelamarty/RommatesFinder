@@ -26,6 +26,7 @@ import About from "./common/About";
 import SearchResult from "./components/Search/SearchResult";
 import AddOffer from "./components/Offers/AddOffer";
 import AddRoom from "./components/Offers/AddRoom";
+import Chat from "./pages/Chat/Chat";
 
 const App = () => {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ const App = () => {
           <Route path="/searchResult" element={<SearchResult />} />
           <Route path="/addOffer" element={<AddOffer />} />
           <Route path="/addRoom" element={<AddRoom />} />
+          <Route path="/Chat" element={<Chat />} />
         </Routes>
         <Footer />
       </div>

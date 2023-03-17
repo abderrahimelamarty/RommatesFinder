@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -10,8 +10,10 @@ import {
   Label,
   Row,
 } from "reactstrap";
+import AuthService from "../../services/auth.service";
 import RoomsService from "../../services/rooms-service";
 function AddRoom() {
+  const [CurrentUser, setCurrentUser] = useState(undefined);
   const [ville, setVille] = useState();
   const [adresse, setAdresse] = useState();
   const [prix, setPrice] = useState();
@@ -19,10 +21,18 @@ function AddRoom() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    const user1 = AuthService.getCurrentUser();
+
+    if (user1) {
+      setCurrentUser(user1);
+    }
+  }, []);
   const handleAddRoom = (e) => {
     e.preventDefault();
-
-    RoomsService.addRoom(ville, adresse, prix, images).then(
+    const userId = CurrentUser.id;
+    console.log(userId);
+    RoomsService.addRoom(ville, adresse, prix, images, userId).then(
       (response) => {
         console.log(response);
         navigate("/home");

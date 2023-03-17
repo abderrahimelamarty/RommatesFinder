@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthService from "../../services/auth.service";
 import RoomsService from "../../services/rooms-service";
 import {
@@ -16,7 +17,11 @@ import "./OfferDetails.css";
 function OfferDetails() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [offer, setData] = useState([]);
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [email, setEmail] = useState("abdomath2001@gmail.com");
   const { id } = useParams();
+
   useEffect(() => {
     RoomsService.getRoom(id).then(
       (response) => {
@@ -50,8 +55,12 @@ function OfferDetails() {
   const handleClick = (e) => {
     e.preventDefault();
     if (currentUser) {
-      console.log(credentials);
-      navigate("/thank-you");
+      // console.log(credentials);
+      // navigate("/thank-you");
+      const phoneNumber = "212643340259";
+
+      const whatsappUrl = `https://wa.me/${phoneNumber}`;
+      window.open(whatsappUrl, "_blank");
     } else {
       navigate("/login");
     }
@@ -154,7 +163,6 @@ function OfferDetails() {
                         ${offer.prix}
                         <i class="ri-close-line"></i>1 person
                       </h5>
-                      <span>{offer.prix}</span>
                     </ListGroupItem>
                     <ListGroupItem className="border-0 px-0">
                       <h5>Service Charge</h5>
@@ -169,8 +177,16 @@ function OfferDetails() {
                     className="btn btn-primary rounded-5 w-100 mt-4"
                     onClick={handleClick}
                   >
-                    Book Now
+                    Whatsap
                   </button>
+                  <Link to="/Chat">
+                    <button
+                      className="btn btn-primary rounded-5 w-100 mt-4"
+                      onClick={() => setShowForm(true)}
+                    >
+                      message
+                    </button>
+                  </Link>
                 </div>
               </div>
             </Col>

@@ -40,6 +40,7 @@ public class RoomController {
     }
     @PostMapping ("/addRoom")
     public ResponseEntity<Room>  addRoom(@RequestBody Room room){
+       System.out.println(room.getUserId());
         return new ResponseEntity<Room>(roomService.addRoom(room), HttpStatus.OK);
     }
     @GetMapping("/RoomsByCity/{ville}")
@@ -53,14 +54,6 @@ public class RoomController {
         }
         return new ResponseEntity<List<Room>>(roomss, HttpStatus.OK);
     }
-    @PostMapping ("/bookRoom")
-    public ResponseEntity<RentRequest>  bookRoom(@RequestBody RentRequest rentRequest){
 
-        return new ResponseEntity<RentRequest>(rentRequestService.sendRentRequest(rentRequest.getRequest(), rentRequest.getFromUser(), rentRequest.getToUser()), HttpStatus.OK);
-    }
-    @PostMapping("/{id}/accept")
-    public ResponseEntity<Notification> acceptFriendRequest(@PathVariable("id") String rentRequestId) {
-        return  new ResponseEntity<Notification>(rentRequestService.acceptRentRequest(rentRequestId),HttpStatus.OK);
-    }
 
 }
