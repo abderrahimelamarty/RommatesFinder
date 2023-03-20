@@ -15,10 +15,15 @@ const addRoom = (ville, adresse, prix, images, userId) => {
 const getRoom = (id) => {
   return axios.get(API_URL + "Rooms/" + id);
 };
+const getRoomsBycity = (city) => {
+  return axios.get(API_URL + "RoomsByCity/" + city);
+};
+
 const RoomsService = {
   getAllRooms,
   addRoom,
   getRoom,
+  getRoomsBycity,
 };
 
 export default RoomsService;

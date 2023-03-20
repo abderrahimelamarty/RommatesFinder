@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/rooms")
 public class RoomController {
@@ -40,7 +40,7 @@ public class RoomController {
     }
     @PostMapping ("/addRoom")
     public ResponseEntity<Room>  addRoom(@RequestBody Room room){
-       System.out.println(room.getUserId());
+
         return new ResponseEntity<Room>(roomService.addRoom(room), HttpStatus.OK);
     }
     @GetMapping("/RoomsByCity/{ville}")

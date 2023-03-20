@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "reactstrap";
 import RoomsService from "../services/rooms-service";
 import UserService from "../services/user.service";
+import { FiSearch } from "react-icons/fi";
 import Offers from "./Offers/Offers";
 import "./Home.css";
 import Ville from "./Ville/Ville";
+import Hero from "./Hero/Hero";
+import Roommates from "./Rommate/Roommates";
 const Home = () => {
   const [content, setContent] = useState("");
 
@@ -21,7 +24,7 @@ const Home = () => {
 
   return (
     <section>
-      <Container>
+      {/* <Container>
         <Row>
           <Col lg="6">
             <div className="hero__content">
@@ -63,7 +66,9 @@ const Home = () => {
             </div>
           </Col>
         </Row>
-      </Container>
+      </Container> */}
+      <Hero />
+
       <br></br>
       <h2
         className="featured__tour-title"
@@ -84,6 +89,13 @@ const Home = () => {
           </h2>
         </Col>
         <Offers />
+        <h2
+          className="featured__tour-title"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          Roommates For You
+        </h2>
+        <Roommates />
       </Row>
     </section>
   );

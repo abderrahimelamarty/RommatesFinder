@@ -3,7 +3,9 @@ import authHeader from "./auth-header";
 
 const API = "http://localhost:8084/api";
 
-export const createChat = (data) => API.post("/chat/", data);
+export const createChat = (data) => {
+  return axios.post(API + "/chats", data, { headers: authHeader() });
+};
 
 export const userChats = (id) => {
   return axios.get(API + "/chat/" + id, { headers: authHeader() });

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import RoomsService from "../../services/rooms-service";
 import SearchItem from "./SearchItem";
 import "./searchResult.css";
 function SearchResult() {
@@ -8,9 +10,22 @@ function SearchResult() {
   const [date, setDate] = useState("01/12/2001");
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState("No");
+  const [rooms, setRooms] = useState();
+  const { city } = useParams();
+
+  useEffect(() => {
+    RoomsService.getRoomsBycity(city).then(
+      (response) => {
+        console.log(response.data);
+        setRooms(response.data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }, []);
   return (
     <div>
-      {" "}
       <div>
         <div className="listContainer">
           <div className="listWrapper">
@@ -64,15 +79,11 @@ function SearchResult() {
               <button>Search</button>
             </div>
             <div className="listResult">
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
+              {rooms?.map((offer) => (
+                <div key={offer.id}>
+                  <SearchItem room={offer} />
+                </div>
+              ))}
             </div>
           </div>
         </div>

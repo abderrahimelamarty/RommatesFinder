@@ -1,7 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./searchItem.css";
-function SearchItem() {
+function SearchItem({ room }) {
+  const navigate = useNavigate();
+  const handleBook = (e) => {
+    console.log(room.id);
+    e.preventDefault();
+    navigate(`/OfferDetails/${room.id}`);
+  };
   return (
     <div>
       {" "}
@@ -12,7 +18,7 @@ function SearchItem() {
           className="siImg"
         />
         <div className="siDesc">
-          <h1 className="siTitle">Tower Street Apartments</h1>
+          <h1 className="siTitle">{room.adresse}</h1>
           <span className="siDistance">500m from center</span>
           <span className="siTaxiOp rating d-flex align-items-center gap-1">
             <i class="ri-wifi-line"></i>wiffi speed 5G
@@ -37,12 +43,11 @@ function SearchItem() {
             </span>
           </div>
           <div className="siDetailTexts">
-            <span className="siPrice">$112</span>
-            <span className="siTaxOp">Includes taxes and fees</span>
-            <Link to="/OfferDetails/1">
-              {" "}
-              <button className="siCheckButton">Rent Now</button>
-            </Link>
+            <span className="siPrice">${room.prix}</span>
+            <span className="siTaxOp">Includes taxes and fees</span>{" "}
+            <button className="siCheckButton" onClick={handleBook}>
+              Rent Now
+            </button>
           </div>
         </div>
       </div>

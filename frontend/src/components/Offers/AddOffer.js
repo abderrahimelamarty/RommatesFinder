@@ -38,7 +38,7 @@ function AddOffer() {
             Rent out a whole vacant property (with no existing roommates) on a
           </div>
           <p>
-            <Link to="/addRoom">
+            <Link to="/sharePost">
               {" "}
               <button class="btn  btn-info">Post a free ad</button>
             </Link>{" "}

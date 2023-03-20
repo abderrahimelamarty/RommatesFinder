@@ -14,6 +14,7 @@ import {
   Row,
 } from "reactstrap";
 import "./OfferDetails.css";
+import { createChat } from "../../services/chat-service";
 function OfferDetails() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [offer, setData] = useState([]);
@@ -63,6 +64,20 @@ function OfferDetails() {
       window.open(whatsappUrl, "_blank");
     } else {
       navigate("/login");
+    }
+  };
+  const handleCreateChat = (e) => {
+    e.preventDefault();
+    const Ids = {
+      senderId: currentUser.id,
+      receiverId: offer.userId,
+    };
+    try {
+      const data = createChat(Ids);
+      navigate("/Chat");
+      console.log(data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -179,14 +194,13 @@ function OfferDetails() {
                   >
                     Whatsap
                   </button>
-                  <Link to="/Chat">
-                    <button
-                      className="btn btn-primary rounded-5 w-100 mt-4"
-                      onClick={() => setShowForm(true)}
-                    >
-                      message
-                    </button>
-                  </Link>
+
+                  <button
+                    className="btn btn-primary rounded-5 w-100 mt-4"
+                    onClick={handleCreateChat}
+                  >
+                    message
+                  </button>
                 </div>
               </div>
             </Col>

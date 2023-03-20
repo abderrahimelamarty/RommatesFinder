@@ -27,6 +27,8 @@ import SearchResult from "./components/Search/SearchResult";
 import AddOffer from "./components/Offers/AddOffer";
 import AddRoom from "./components/Offers/AddRoom";
 import Chat from "./pages/Chat/Chat";
+import AddRommate from "./components/Rommate/AddRommate";
+import RoommateDetails from "./components/Rommate/RoommateDetails";
 
 const App = () => {
   const navigate = useNavigate();
@@ -68,10 +70,12 @@ const App = () => {
           <Route path="/OfferDetails/:id" element={<OfferDetails />} />
           <Route path="/thank-you" element={<Thankyou />} />
           <Route path="/about" element={<About />} />
-          <Route path="/searchResult" element={<SearchResult />} />
+          <Route path="/searchResult/:city" element={<SearchResult />} />
           <Route path="/addOffer" element={<AddOffer />} />
           <Route path="/addRoom" element={<AddRoom />} />
           <Route path="/Chat" element={<Chat />} />
+          <Route path="/sharePost" element={<AddRommate />} />
+          <Route path="/roommate/:id" element={<RoommateDetails />} />
         </Routes>
         <Footer />
       </div>
