@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -31,8 +32,8 @@ public class ChatRoomController {
     }
 
     @GetMapping("/chat/find/{firstId}/{secondId}")
-    public ResponseEntity<Chat> findChatRoom(@PathVariable String firstId, @PathVariable String secondId) {
-        Chat chatRoom = chatRoomService.findChatRoom(firstId, secondId);
+    public ResponseEntity<Optional> findChatRoom(@PathVariable String firstId, @PathVariable String secondId) {
+        Optional chatRoom = chatRoomService.findChatRoom(firstId, secondId);
         return ResponseEntity.ok(chatRoom);
     }
 }

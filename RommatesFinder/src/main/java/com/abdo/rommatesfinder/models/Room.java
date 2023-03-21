@@ -17,7 +17,7 @@ public class Room {
     String Ville;
     String images;
     String adresse;
-    Boolean rented;
+    String Description;
     String userId;
     String Username;
     int Prix;

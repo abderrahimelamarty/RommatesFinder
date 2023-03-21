@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ChatRoomService {
@@ -26,7 +27,7 @@ public class ChatRoomService {
 
 
 
- public Chat findChatRoom(String firstId, String secondId) {
+ public Optional findChatRoom(String firstId, String secondId) {
   return chatRoomRepository.findByMembers(firstId, secondId);
  }
 

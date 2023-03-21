@@ -1,12 +1,8 @@
 package com.abdo.rommatesfinder.controllers;
 
-import com.abdo.rommatesfinder.models.Notification;
-import com.abdo.rommatesfinder.models.RentRequest;
 import com.abdo.rommatesfinder.models.Room;
-import com.abdo.rommatesfinder.models.User;
 import com.abdo.rommatesfinder.repositories.RoomRepository;
 import com.abdo.rommatesfinder.repositories.UserRepository;
-import com.abdo.rommatesfinder.services.RentRequestService;
 import com.abdo.rommatesfinder.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 @CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/rooms")
@@ -24,8 +20,7 @@ public class RoomController {
     RoomService roomService;
     @Autowired
     RoomRepository roomRepository;
-    @Autowired
-    RentRequestService rentRequestService;
+
     @Autowired
     UserRepository userRepository;
     @GetMapping("/allRooms")

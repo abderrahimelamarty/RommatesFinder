@@ -82,7 +82,12 @@ public class AuthController {
                     userDetails.getId(),
                     userDetails.getUsername(),
                     userDetails.getEmail(),
-                    roles));
+                    roles,
+                    userDetails.getImage(),
+                    userDetails.getBudget(),
+                    userDetails.getTele()
+
+                  ));
         }
         catch(Exception e){
             e.printStackTrace();
@@ -109,7 +114,7 @@ public class AuthController {
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                encoder.encode(signUpRequest.getPassword()),signUpRequest.getBudget(),signUpRequest.getImage(),signUpRequest.getTele());
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -175,7 +180,10 @@ public class AuthController {
                 userUpdate.getId(),
                 userUpdate.getUsername(),
                 userUpdate.getEmail(),
-                roles
+                roles,
+                userUpdate.getImage(),
+                userUpdate.getBudget(),
+                userUpdate.getTele()
                 ));
     }
 

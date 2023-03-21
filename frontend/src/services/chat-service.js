@@ -11,5 +11,8 @@ export const userChats = (id) => {
   return axios.get(API + "/chat/" + id, { headers: authHeader() });
 };
 
-export const findChat = (firstId, secondId) =>
-  API.get(`/chat/find/${firstId}/${secondId}`);
+export const findChat = (firstId, secondId) => {
+  return axios.get(API + `/chat/find/${firstId}/${secondId}`, {
+    headers: authHeader(),
+  });
+};

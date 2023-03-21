@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 public class Notification {
     @Id
     String id;
-    User sender;
-    User receiver;
+    String sender;
+    String receiver;
     String msg;
     private LocalDateTime timestamp;
     private boolean read;

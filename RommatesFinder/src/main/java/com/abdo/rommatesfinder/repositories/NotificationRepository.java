@@ -11,4 +11,5 @@ import java.util.List;
 public interface NotificationRepository extends MongoRepository<Notification,String> {
     List<Notification> findByReceiverAndReadFalseOrderByTimestampDesc(User receiver);
 
+    List<Notification> findByReceiver(String id);
 }

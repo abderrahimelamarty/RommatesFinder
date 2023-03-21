@@ -12,17 +12,13 @@ function SearchItem({ room }) {
     <div>
       {" "}
       <div className="searchItem">
-        <img
-          src="https://s7d2.scene7.com/is/image/ritzcarlton/pnrqz-king-50661983?$XlargeViewport100pct$"
-          alt=""
-          className="siImg"
-        />
+        <img src={room.images} alt="" className="siImg" />
         <div className="siDesc">
-          <h1 className="siTitle">{room.adresse}</h1>
-          <span className="siDistance">500m from center</span>
-          <span className="siTaxiOp rating d-flex align-items-center gap-1">
-            <i class="ri-wifi-line"></i>wiffi speed 5G
-          </span>
+          <h1 className="siTitle d-flex align-items-center gap-1">
+            <i class="ri-map-pin-line"></i>
+            {room.adresse}
+          </h1>
+
           <span className="siSubtitle">
             Studio Apartment with Air conditioning
           </span>
@@ -36,10 +32,10 @@ function SearchItem({ room }) {
         </div>
         <div className="siDetails">
           <div className="siRating">
-            <span>Excellent</span>
+            <span></span>
             <span className=" rating d-flex align-items-center gap-1">
               {" "}
-              8.9<i class="ri-star-fill"></i>
+              <h5 className="text-primary"> {room.ville}</h5>
             </span>
           </div>
           <div className="siDetailTexts">

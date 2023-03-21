@@ -5,11 +5,12 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ChatRoomRepository extends MongoRepository<Chat, String> {
     List<Chat> findByMembersContaining(String username);
 
-    Chat findByMembers(String firstId, String secondId);
+    Optional findByMembers(String firstId, String secondId);
 }
 

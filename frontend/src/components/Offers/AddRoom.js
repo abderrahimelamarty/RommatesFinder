@@ -1,3 +1,4 @@
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -10,6 +11,7 @@ import {
   Label,
   Row,
 } from "reactstrap";
+import { storage } from "../../firebase/firebase";
 import AuthService from "../../services/auth.service";
 import RoomsService from "../../services/rooms-service";
 function AddRoom() {
@@ -17,7 +19,8 @@ function AddRoom() {
   const [ville, setVille] = useState();
   const [adresse, setAdresse] = useState();
   const [prix, setPrice] = useState();
-  const [images, setImages] = useState();
+  const [image, setImage] = useState();
+  const [url, setURL] = useState();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
@@ -28,11 +31,35 @@ function AddRoom() {
       setCurrentUser(user1);
     }
   }, []);
+  const databaseRef = ref(storage, "images/" + `${Date.now()}-${image?.name}`);
+  const uploadFile = async () => {
+    const uploadTask = uploadBytesResumable(databaseRef, image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = snapshot.bytesTransferred / snapshot.totalBytes;
+      },
+      (error) => {
+        console.log(error);
+      },
+      async () => {
+        await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          //
+
+          console.log(downloadURL);
+          setURL(downloadURL);
+        });
+      }
+    );
+  };
   const handleAddRoom = (e) => {
     e.preventDefault();
+
+    uploadFile();
+    console.log(url);
     const userId = CurrentUser.id;
     console.log(userId);
-    RoomsService.addRoom(ville, adresse, prix, images, userId).then(
+    RoomsService.addRoom(ville, adresse, prix, url, userId).then(
       (response) => {
         console.log(response);
         navigate("/home");
@@ -42,7 +69,6 @@ function AddRoom() {
         setError(error.message);
       }
     );
-    console.log("addroom");
   };
   return (
     <div className="mx-5">
@@ -106,8 +132,9 @@ function AddRoom() {
               <Input
                 id="image"
                 name="image"
+                type="file"
                 required
-                onChange={(e) => setImages(e.target.value)}
+                onChange={(e) => setImage(e.target.files[0])}
               />
             </FormGroup>
           </Col>

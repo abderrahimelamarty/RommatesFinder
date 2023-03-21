@@ -1,13 +1,19 @@
 package com.abdo.rommatesfinder.payload.request;
 
+import lombok.Data;
+
 import java.util.Set;
 
 import javax.validation.constraints.*;
-
+@Data
 public class SignupRequest {
     @NotBlank
     @Size(min = 3, max = 20)
     private String username;
+
+    private int budget;
+    private int  tele;
+    private String image;
 
     @NotBlank
     @Size(max = 50)

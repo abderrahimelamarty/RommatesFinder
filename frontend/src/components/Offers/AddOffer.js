@@ -14,13 +14,13 @@ function AddOffer() {
             />
           </p>
           <div class="options__description">
-            <h3 class="options__description-title">Rooms for Rent ad</h3>
+            <h3 class="options__description-title">Add a Room for rent</h3>
             Advertise one or more rooms in a property
           </div>
           <p class="options__button-container">
             <Link to="/addRoom">
               {" "}
-              <button class="btn  btn-info">Post a free ad</button>
+              <button class="btn  btn-primary">Add Post</button>
             </Link>{" "}
           </p>
         </a>
@@ -34,13 +34,13 @@ function AddOffer() {
             />
           </p>
           <div>
-            <h3>Whole Apartment for Rent ad</h3>
-            Rent out a whole vacant property (with no existing roommates) on a
+            <h3>Share Post </h3>
+            find roommates
           </div>
           <p>
             <Link to="/sharePost">
               {" "}
-              <button class="btn  btn-info">Post a free ad</button>
+              <button class="btn  btn-primary">Add Post</button>
             </Link>{" "}
           </p>
         </a>

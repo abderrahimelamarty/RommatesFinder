@@ -14,7 +14,16 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import AuthService from "../../services/auth.service";
-
+import { storage } from "../../firebase/firebase";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+  uploadBytesResumable,
+} from "firebase/storage";
+import { v4 } from "uuid";
 function AddRommate() {
   const [CurrentUser, setCurrentUser] = useState(undefined);
   const [ville, setVille] = useState();
@@ -22,7 +31,29 @@ function AddRommate() {
   const [prix, setPrice] = useState();
   const [image, setImage] = useState();
   const [error, setError] = useState("");
+  const [url, setURL] = useState();
 
+  const databaseRef = ref(storage, "images/" + `${Date.now()}-${image?.name}`);
+  const uploadFile = async () => {
+    const uploadTask = uploadBytesResumable(databaseRef, image);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = snapshot.bytesTransferred / snapshot.totalBytes;
+      },
+      (error) => {
+        console.log(error);
+      },
+      async () => {
+        await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          //
+
+          console.log(downloadURL);
+          setURL(downloadURL);
+        });
+      }
+    );
+  };
   const navigate = useNavigate();
   useEffect(() => {
     const user1 = AuthService.getCurrentUser();
@@ -34,8 +65,10 @@ function AddRommate() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(url);
+    uploadFile();
     const userId = CurrentUser.id;
-    createRoommate(ville, prix, image, userId)
+    createRoommate(ville, prix, url, userId)
       .then((response) => {
         console.log("Success:", response);
         navigate("/home");
@@ -87,8 +120,9 @@ function AddRommate() {
               <Input
                 id="image"
                 name="image"
+                type="file"
                 required
-                onChange={(e) => setImage(e.target.value)}
+                onChange={(e) => setImage(e.target.files[0])}
               />
             </FormGroup>
           </Col>

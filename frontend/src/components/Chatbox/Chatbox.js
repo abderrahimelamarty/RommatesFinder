@@ -5,6 +5,7 @@ import UserService from "../../services/user.service";
 import InputEmoji from "react-input-emoji";
 import "./Chatbox.css";
 import { addMessage, getMessages } from "../../services/message-service";
+import { addNotification } from "../../services/notification-service";
 function Chatbox({ chat, currentUser, setSendMessage, receivedMessage }) {
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -34,12 +35,19 @@ function Chatbox({ chat, currentUser, setSendMessage, receivedMessage }) {
 
   const handleSend = async (e) => {
     e.preventDefault();
+    const receiverId = chat.members.find((id) => id !== currentUser);
     const message = {
       senderId: currentUser,
       text: newMessage,
       chatId: chat.id,
     };
-    const receiverId = chat.members.find((id) => id !== currentUser);
+    const notification = {
+      sender: currentUser,
+      receiver: receiverId,
+      msg: newMessage,
+      read: false,
+    };
+
     // send message to socket server
     setSendMessage({ ...message, receiverId });
     // send message to database
@@ -51,13 +59,20 @@ function Chatbox({ chat, currentUser, setSendMessage, receivedMessage }) {
     } catch {
       console.log("error");
     }
+    try {
+      const { data } = await addNotification(notification);
+
+      console.log(data);
+    } catch {
+      console.log("error");
+    }
   };
   // Receive Message from parent component
   useEffect(() => {
     console.log("Message Arrived: ", receivedMessage);
     if (
       receivedMessage !== null &&
-      receivedMessage.chatId === chat.id &&
+      receivedMessage.chatId === chat?.id &&
       receivedMessage.senderId !== currentUser
     ) {
       setMessages([...messages, receivedMessage]);

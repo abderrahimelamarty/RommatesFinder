@@ -14,13 +14,13 @@ import {
   Row,
 } from "reactstrap";
 import "./OfferDetails.css";
-import { createChat } from "../../services/chat-service";
+import { createChat, findChat } from "../../services/chat-service";
 function OfferDetails() {
   const [currentUser, setCurrentUser] = useState(undefined);
   const [offer, setData] = useState([]);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [email, setEmail] = useState("abdomath2001@gmail.com");
+  const [room, setRoom] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
@@ -56,8 +56,6 @@ function OfferDetails() {
   const handleClick = (e) => {
     e.preventDefault();
     if (currentUser) {
-      // console.log(credentials);
-      // navigate("/thank-you");
       const phoneNumber = "212643340259";
 
       const whatsappUrl = `https://wa.me/${phoneNumber}`;
@@ -66,12 +64,14 @@ function OfferDetails() {
       navigate("/login");
     }
   };
-  const handleCreateChat = (e) => {
+  const handleCreateChat = async (e) => {
     e.preventDefault();
     const Ids = {
       senderId: currentUser.id,
       receiverId: offer.userId,
     };
+    console.log(Ids);
+
     try {
       const data = createChat(Ids);
       navigate("/Chat");
@@ -88,10 +88,7 @@ function OfferDetails() {
           <Row>
             <Col lg="8">
               <div className="tour__content">
-                <img
-                  src="https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg"
-                  alt=""
-                />
+                <img src={offer.images} alt="" />
                 <div className="tour__info">
                   <h2>{offer.ville}</h2>
                   <div className="d-flex align-items-center gap-5">

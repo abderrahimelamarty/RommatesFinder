@@ -41,5 +41,6 @@ io.on("connection", (socket) => {
     console.log("Data: ", data);
 
     io.emit("recieve-message", data);
+    io.emit("message-notification", data);
   });
 });

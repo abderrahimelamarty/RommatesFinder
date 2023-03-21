@@ -1,13 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { getNotifications } from "../../services/notification-service";
 import UserService from "../../services/user.service";
-
+import io from "socket.io-client";
+const socket = io("http://localhost:8800");
 function Conversation({ data, currentUserId }) {
   const [userData, setUserData] = useState(null);
+  const [a, seta] = useState(0);
+  const [sender, setSender] = useState();
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     const userId = data.members.find((id) => id !== currentUserId);
+    console.log(userId);
     const getUserData = async () => {
       try {
         const { data } = await UserService.getUser(userId);
@@ -20,10 +26,11 @@ function Conversation({ data, currentUserId }) {
 
     getUserData();
   }, []);
+
   return (
     <div>
-      <div className="follower conversation ">
-        <div className="d-flex align-items-center gap-3">
+      <div className="follower conversation bg-info  ">
+        <div className="d-flex align-items-center gap-4">
           <img
             src="https://t3.ftcdn.net/jpg/05/79/55/26/360_F_579552668_sZD51Sjmi89GhGqyF27pZcrqyi7cEYBH.jpg"
             alt="Profile"
@@ -35,7 +42,6 @@ function Conversation({ data, currentUserId }) {
           </div>
         </div>
       </div>
-      <hr style={{ width: "100%", border: "0.1px solid black" }} />
     </div>
   );
 }

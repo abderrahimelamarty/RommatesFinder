@@ -1,13 +1,26 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import AuthService from "../../services/auth.service";
+import { createChat, findChat } from "../../services/chat-service";
 import { getRoommmate } from "../../services/Roommate-service";
 import "./RoommateDetails.css";
 
 function RoommateDetails() {
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const navigate = useNavigate();
   const { id } = useParams();
+  const [room, setRoom] = useState();
+
   const [roommate, setRoommate] = useState();
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    console.log(user);
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
   useEffect(() => {
     const fetchRommates = async () => {
       try {
@@ -21,6 +34,22 @@ function RoommateDetails() {
 
     fetchRommates();
   }, []);
+  const handleCreateChat = (e) => {
+    e.preventDefault();
+    const Ids = {
+      senderId: currentUser.id,
+      receiverId: roommate?.userId,
+    };
+
+    try {
+      const data = createChat(Ids);
+
+      navigate("/Chat");
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <div className="main-wrapper">
@@ -73,6 +102,7 @@ function RoommateDetails() {
                 <button
                   type="button"
                   className="btn btn-primary mt-5 d-flex align-items-center gap-1"
+                  onClick={handleCreateChat}
                 >
                   <i class="ri-chat-1-line"></i>
                   Message

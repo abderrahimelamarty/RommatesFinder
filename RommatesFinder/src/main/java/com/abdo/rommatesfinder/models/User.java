@@ -22,7 +22,9 @@ import javax.validation.constraints.Size;
 public class User {
     @Id
     private String id;
-
+    private int budget;
+    private int tele;
+    private String image;
     @NotBlank
     @Size(max = 20)
     private String username;
@@ -36,10 +38,13 @@ public class User {
     @Size(max = 120)
     private String password;
     private Set<Role> roles = new HashSet<>();
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, int budget, String image, int tele) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.budget=budget;
+        this.image=image;
+        this.tele=tele;
     }
 
 }

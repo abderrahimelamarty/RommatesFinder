@@ -4,6 +4,22 @@
   height: 250px;
   object-fit: contain;
 }
+.user img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.user span {
+  font-size: 18px;
+
+  color: blue;
+}
+.user h6 {
+  font-size: 18px;
+
+  color: blue;
+}
 .card {
   border: none !important;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
@@ -12,10 +28,11 @@
   position: relative;
 }
 .card__top span i {
-  color: blue;
+  color: rgb(0, 0, 0);
 }
 .tour__rating {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: bold;
   color: blue;
 }
 .tour__location {
@@ -27,9 +44,12 @@
 }
 .tour__title {
   margin-top: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  color: black;
+  font-weight: bold;
   cursor: pointer;
 }
+
 .tour__title a {
   text-decoration: none;
   color: black;
@@ -39,13 +59,19 @@
 .tour__title a:hover {
   color: blue;
 }
+.card__bottom {
+  border-top: 1px solid rgb(232, 223, 223);
+}
 .card__bottom h6 {
   color: blue;
   font-size: 1rem;
   font-weight: 700;
 }
 .booking__btn {
-  background: rgb(138, 220, 245);
+  margin-top: 10px;
+  border: 1px solid blue;
+  color: blue;
+  background: white;
   cursor: pointer;
   padding: 0.2rem 0.5rem;
 }

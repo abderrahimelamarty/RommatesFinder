@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { getRoommmates } from "../../services/Roommate-service";
 import RoomsService from "../../services/rooms-service";
 import SearchItem from "./SearchItem";
 import "./searchResult.css";
 function SearchResult() {
-  const location = useLocation();
   const [destination, setDestination] = useState("ville");
-  const [date, setDate] = useState("01/12/2001");
-  const [openDate, setOpenDate] = useState(false);
+  const navigate = useNavigate();
   const [options, setOptions] = useState("No");
   const [rooms, setRooms] = useState();
+  const [ville, setVille] = useState();
   const { city } = useParams();
 
   useEffect(() => {
@@ -23,7 +23,30 @@ function SearchResult() {
         console.log(error);
       }
     );
+    const fetchRommates = async () => {
+      try {
+        const { data } = await getRoommmates();
+        const data2 = data.filter((e) => e.ville == city);
+        console.log(data2);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchRommates();
   }, []);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    RoomsService.getRoomsBycity(ville).then(
+      (response) => {
+        console.log(response.data);
+        setRooms(response.data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
   return (
     <div>
       <div>
@@ -33,7 +56,11 @@ function SearchResult() {
               <h1 className="lsTitle">Search</h1>
               <div className="lsItem">
                 <label>Destination</label>
-                <input placeholder={destination} type="text" />
+                <input
+                  placeholder={destination}
+                  type="text"
+                  onChange={(e) => setVille(e.target.value)}
+                />
               </div>
 
               <div className="lsItem">
@@ -76,7 +103,7 @@ function SearchResult() {
                   </div>
                 </div>
               </div>
-              <button>Search</button>
+              <button onClick={handleSearch}>Search</button>
             </div>
             <div className="listResult">
               {rooms?.map((offer) => (

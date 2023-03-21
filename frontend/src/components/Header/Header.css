@@ -17,6 +17,20 @@
   margin-right: auto;
   margin-left: auto;
 }
+.counter {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 20%;
+  padding: 5px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 780px;
+  top: 50px;
+}
 .nav__item a {
   text-align: none;
   color: var(--heading-color);
