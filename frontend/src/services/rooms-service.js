@@ -5,10 +5,10 @@ const API_URL = "http://localhost:8084/api/v1/rooms/";
 const getAllRooms = () => {
   return axios.get(API_URL + "allRooms");
 };
-const addRoom = (ville, adresse, prix, images, userId) => {
+const addRoom = (ville, adresse, prix, images, userId, description) => {
   return axios.post(
     API_URL + "addRoom",
-    { userId, ville, adresse, prix, images },
+    { userId, ville, adresse, prix, images, description },
     { headers: authHeader() }
   );
 };

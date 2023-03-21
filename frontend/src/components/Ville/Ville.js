@@ -16,7 +16,6 @@ function Ville() {
           </Link>
           <div className="featuredTitles">
             <h1>Fés </h1>
-            <h2>123 properties</h2>
           </div>
         </div>
 
@@ -30,7 +29,6 @@ function Ville() {
           </Link>
           <div className="featuredTitles">
             <h1>Rabat</h1>
-            <h2>533 properties</h2>
           </div>
         </div>
         <div className="featuredItem">
@@ -43,7 +41,6 @@ function Ville() {
           </Link>
           <div className="featuredTitles">
             <h1>Casa</h1>
-            <h2>532 properties</h2>
           </div>
         </div>
       </div>

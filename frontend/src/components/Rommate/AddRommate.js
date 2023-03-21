@@ -147,7 +147,7 @@ function AddRommate() {
         </Row>
 
         <Button color="primary" onClick={handleSubmit}>
-          Sign in
+          Add Post
         </Button>
       </Form>
     </div>
